@@ -1,91 +1,54 @@
-# Kilo Workspace Guide
+# Kilo 全局约定
 
 ## 目标
 
-本目录承载 `kilo/` 当前收敛后的核心工作台配置，用于统一 agent、command、rules 与配套说明文档的职责边界。
+主 `AGENTS.md` 负责全局目标、术语与顶层约束；稳定治理规则下沉到 `rules/`；
+`command/` 负责 workflow 入口；`agent/` 负责角色能力定义。
 
-这里描述的是当前稳定结构，不再保留早期 Phase 1 最小迁移口径。
+这样可以避免主 `AGENTS.md` 演变成大而全手册，并保持目录职责清晰。
 
-## 目录结构
+## 核心原则
 
-- `agent/`：可直接调用的角色文档，负责角色能力、工作边界与输出要求
-- `command/`：workflow 入口文档，负责阶段编排、角色协作、模式要求与收口方式
-- `rules/`：稳定、跨多处复用的治理约束，不承载一次性说明
-- `AGENTS.md`：`.kilo/` 总述、边界原则与维护入口
+1. 优先使用 command 组织完整 workflow，避免手工拼接多个 agent
+2. agent 负责角色能力，command 负责流程闭环，rules 负责稳定治理约束
+3. 证据驱动，不凭空假设；复杂任务先规划，再进入执行
+4. 安全优先，不写入敏感信息，不引入已知高风险依赖
+5. 保持小步交付，涉及代码或配置改动时优先完成本地验证
+6. 长尾能力默认隔离，不污染核心工程链路
+7. 不单独创建 `skills/`，相关能力继续炼化进 agent 或 command
 
-## 当前能力组成
+## 语言要求
 
-### Agents
+- 说明、规则、文档与注释默认使用中文
+- 技术术语保留英文原文
+- 文件名、command 名、agent 名与代码标识符保持英文
 
-- `architect`
-- `backend-engineer`
-- `frontend-engineer`
-- `devops-engineer`
-- `test-engineer`
-- `security-auditor`
-- `debugger`
-- `code-reviewer`
-- `docs-architect`
-- `data-engineer`
+## 术语约定
 
-### Commands
+- `mode`：运行态工作模式，决定当前怎么工作
+- `phase`：阶段语言，统一使用 `Discovery / Planning / Execution`
+- `workflow`：一类可复用任务流程
+- `command`：workflow 的实际入口
+- `agent`：角色能力，不替代 command 入口
+- `brainstorming`：新项目语境下的 `Discovery`，不是独立 command
+- `项目分析`：已有项目语境下的 `Discovery`
+- `writing-plans`：`Planning` 阶段的计划输出，不是独立 command，当前主要由 `brief-project` 承担
+- `audit`：偏发现、分类与分流
+- `review`：偏深入审查、问题分级与结论输出
 
-- `brief-project`
-- `status-overview`
-- `audit-general`
-- `scaffold-project`
-- `feature-backend`
-- `feature-fullstack`
-- `debug-smart`
-- `review-full`
-- `security-hardening`
-- `tdd-cycle`
-- `observability-review`
-- `migration-upgrade`
-- `api-mock`
-- `meigen-find`
+## 默认增强能力
 
-### Rules
+以下能力属于流程增强层，不是新的 command：
 
-- `workflow-phases.md`
-- `file-governance.md`
-- `release-governance.md`
+- `serena`：代码语义检索、符号定位、引用分析与精确修改
+- `memory`：长期约定、稳定偏好与长任务状态沉淀
+- `context7`：官方文档、版本差异与迁移说明查证
 
-## 边界原则
+具体使用边界与 `memory` 写入规则以 `rules/tooling-context-governance.md` 为准。
 
-1. 优先使用 command 组织完整 workflow，避免让用户手工拼接多个 agent
-2. agent 负责角色能力，不承载运行时 mode，也不编排完整 workflow
-3. command 负责阶段串联、角色协作、模式要求与结果收口
-4. rules 只保留稳定治理约束，不重复堆叠到每个 agent 或 command
-5. docs 与 README 负责使用说明、维护说明与演进记录，不替代规则本体
-6. 不单独创建 `skills/`，相关能力继续炼化进 agent 或 command
-7. 长尾能力默认隔离，不污染核心工程链路
+## 模式要求原则
 
-## 关于模式要求
-
-- mode 属于运行态控制，不写成命令式 `switch mode`
-- mode 不写入 `agent/*.md`
+- `mode` 属于运行态控制，不写成命令式 `switch mode`
+- `mode` 不写入 `agent/*.md`
 - command 如需表达阶段切换，应使用 `## 模式要求` 小节
-- `模式要求` 应优先说明三件事：哪些阶段默认只读、何时进入可写执行模式、验证与归档阶段是否继续保持可写
 
-## 与三阶段流程的关系
-
-- 当前默认流程语言采用 `Discovery / Planning / Execution`
-- 阶段定义以 `rules/workflow-phases.md` 为准
-- command 负责把阶段串成可复用 workflow
-- agent 在自身职责范围内遵循同样的阶段纪律，但不替代 command
-
-## 维护要求
-
-1. 新增或删除 agent / command / rules 时，应同步更新 `README.md` 与相关 docs
-2. 新增 command 时，先判断它是否真的是稳定、多阶段、可复用的 workflow
-3. 新增 agent 时，先判断它是否真的是长期存在、边界清晰、值得直接调用的角色
-4. 如需新增规则文件，必须确认它是稳定、跨多处复用、适合作为治理源的约束
-5. 修改结构后，应避免 README、docs 与 `.kilo/` 实际状态发生信息漂移
-
-## 相关入口
-
-- `@kilo/README.md`：总导航与快速入口
-- `@kilo/docs/usage-by-scenario.md`：按场景选 command / agent
-- `@kilo/docs/common-execution-flow.md`：通用执行流程
-- `@kilo/docs/kilo-maintainer-guide.md`：维护者说明

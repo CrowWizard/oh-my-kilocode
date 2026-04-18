@@ -2,7 +2,16 @@
 
 ## 目标
 
-定义 `kilo/.kilo` 当前采用的轻量三阶段流程，用于统一 command、agent 与使用文档中的流程语言。
+定义当前 Kilo 配置体系使用的 `Discovery / Planning / Execution` 三阶段语言，
+用于统一 command、agent 与使用文档中的流程表达。
+
+本文件只定义阶段目标、适用场景与执行约束，不负责目录边界、命令入口或 mode 规则。
+
+边界说明：
+
+- command 负责把阶段串成可执行 workflow
+- agent 负责在职责范围内执行对应阶段工作
+- 目录边界、文件产出与模式表达由其他 `rules/*.md` 约束
 
 这里的三阶段是默认顺序，不是强制状态机。
 
@@ -81,10 +90,14 @@
 - Execution 阶段涉及审计、review、安全、可观测性、迁移或长任务状态时，应优先产出可追踪结果文件
 - 小任务允许仅在对话中输出，不强制创建文件
 
+具体落盘位置、命名方式与目录归属，以 `rules/file-governance.md` 为准。
+
 ## 使用原则
 
-- 已有项目默认遵循：项目分析 → writing-plans → Execution
-- 新项目默认遵循：brainstorming → writing-plans → Execution
+- 已有项目中，`Discovery` 通常表现为“项目分析”
+- 新项目中，`Discovery` 通常表现为 `brainstorming`
+- `Planning` 的常见输出为 `writing-plans`
+- 上述名称是阶段在不同场景下的表达，不构成新的 phase
 - command 负责把阶段串成 workflow
 - agent 在其职责范围内遵循相同阶段纪律
 - mode 属于运行态控制，不写进阶段定义本体
