@@ -44,11 +44,44 @@
 - `memory`：长期约定、稳定偏好与长任务状态沉淀
 - `context7`：官方文档、版本差异与迁移说明查证
 
+关键摘要：
+
+- `serena` 优先用于代码理解、符号定位、引用分析、跨文件影响判断与精确修改
+- `memory` 只沉淀稳定、高价值、跨轮次复用的信息，不记录一次性执行细节
+- `context7` 优先用于框架 API、官方推荐写法、版本差异与迁移说明查证
+
 具体使用边界与 `memory` 写入规则以 `rules/tooling-context-governance.md` 为准。
+
+## 阶段摘要
+
+- 统一阶段语言为 `Discovery / Planning / Execution`
+- 已有项目中，`Discovery` 通常表现为“项目分析”
+- 新项目中，`Discovery` 通常表现为 `brainstorming`
+- `Planning` 的常见输出为 `writing-plans`
+- command 负责把阶段串成 workflow，agent 在各自职责范围内遵循同样阶段纪律
+
+具体阶段定义以 `rules/workflow-phases.md` 为准。
+
+## 目录与输出摘要
+
+- `agent/` 只承载角色定义，不承载运行命令或具体 workflow 步骤
+- `command/` 承载 workflow 入口与阶段编排
+- `rules/` 只保留稳定、跨多处复用的约束
+- 复杂任务的 Discovery、Planning、审计、review、迁移与长任务状态应优先落成可追踪文件
+- 小任务、一次性咨询或低风险改动允许只在对话中输出，不强制创建文件
+
+具体目录边界与文件输出治理以 `rules/file-governance.md` 为准。
+
+## Release 摘要
+
+- release 收口前应尽量具备计划、状态、验证结果、已知风险与回滚边界
+- release 输出至少应包含发布范围、主要变更摘要、验证结果摘要、已知风险与回滚说明
+- 若需求只是整理当前状态，应优先使用 `status-overview`，不要滥用 release 概念
+
+具体 release 治理以 `rules/release-governance.md` 为准。
 
 ## 模式要求原则
 
 - `mode` 属于运行态控制，不写成命令式 `switch mode`
 - `mode` 不写入 `agent/*.md`
 - command 如需表达阶段切换，应使用 `## 模式要求` 小节
-
