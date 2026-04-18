@@ -1,8 +1,7 @@
 ## Kilo 使用文档：按场景选择 agent 与 workflow
 
 ### 目标
-
-本文档作为 `kilo/` 根目录下的统一使用入口，整合原 `docs/usage-by-scenario.md` 与 `docs/common-execution-flow.md` 中的使用说明与过程建议。
+使用说明与过程建议。
 
 适用对象：
 

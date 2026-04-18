@@ -8,7 +8,6 @@
 - `.config/kilo/command/`：按 workflow 编排的任务入口
 - `.config/kilo/rules/`：跨 command 与 agent 复用的稳定治理约束
 - `.config/kilo/AGENTS.md`：当前目录的约束与迁移背景
-- `@kilo/docs/`：维护说明、整合记录与阶段性决策文档
 
 ## 如何使用
 
@@ -31,11 +30,6 @@
 推荐优先阅读这份文档，再决定使用哪个 command 或 agent。
 
 ### 其他文档
-
-- `@kilo/docs/kilo-maintainer-guide.md`：维护者如何继续演进的说明
-- `@kilo/docs/agent-vs-subagent-plan.md`：主 agent、逻辑 subagent 与双形态角色的分层计划
-- `@kilo/docs/universal-template-integration-plan.md`：与外部 universal template 的整合计划
-- `@kilo/docs/phase-3-longtail-admission.md`：长尾能力准入与试点结论
 - `.config/kilo/rules/workflow-phases.md`：统一 Discovery / Planning / Execution 的阶段语言
 - `.config/kilo/rules/file-governance.md`：目录边界、mode 表达与文件输出治理
 - `.config/kilo/rules/tooling-context-governance.md`：MCP 使用边界与多 subagent 上下文治理
