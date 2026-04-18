@@ -5,6 +5,11 @@
 定义当前 Kilo 配置体系使用的 `Discovery / Planning / Execution` 三阶段语言，
 用于统一 command、agent 与使用文档中的流程表达。
 
+补充说明：
+
+- `decision-framing` 可作为 `Discovery` 与 `Planning` 之间的流程增强节点
+- `decision-framing` 不构成新的 phase，也不替代三阶段主轴
+
 本文件只定义阶段目标、适用场景与执行约束，不负责目录边界、命令入口或 mode 规则。
 
 边界说明：
@@ -14,6 +19,37 @@
 - 目录边界、文件产出与模式表达由其他 `rules/*.md` 约束
 
 这里的三阶段是默认顺序，不是强制状态机。
+
+---
+
+## 流程增强节点：Decision-Framing
+
+定位：
+
+- `decision-framing` 用于在 `Discovery` 已完成事实收集后、进入 `Planning` 前做一次结构化收敛
+- 它负责整理约束、比较方案、识别关键取舍与提前暴露主要风险
+- 它不是新的 `phase`，而是帮助把上下文收敛成更稳健 `writing-plans` 的增强动作
+
+适合触发的情况：
+
+- Discovery 已收集到较多事实，但仍存在多种可行方案
+- 任务影响范围较广，直接输出计划容易遗漏关键约束
+- 需要在实现前先做边界条件、回滚边界或风险分级判断
+
+产出重点：
+
+- 目标重述
+- 关键约束
+- 主要风险
+- 备选方案与取舍理由
+- 推荐方向
+
+约束：
+
+- 不直接替代 `Planning`
+- 不输出冗长发散推理
+- 不单独作为 command 暴露给用户
+- 小任务可跳过该节点，避免把流程做重
 
 ---
 
@@ -96,6 +132,7 @@
 
 - 已有项目中，`Discovery` 通常表现为“项目分析”
 - 新项目中，`Discovery` 通常表现为 `brainstorming`
+- `decision-framing` 可在 `Discovery` 与 `Planning` 之间作为增强节点使用，但不单列为新阶段
 - `Planning` 的常见输出为 `writing-plans`
 - 上述名称是阶段在不同场景下的表达，不构成新的 phase
 - command 负责把阶段串成 workflow

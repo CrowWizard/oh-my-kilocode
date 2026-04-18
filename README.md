@@ -53,6 +53,7 @@
 - `agent`：角色能力，不替代 command 入口
 - `brainstorming`：新项目语境下的 `Discovery`，不是独立 command
 - `项目分析`：已有项目语境下的 `Discovery`
+- `decision-framing`：`Discovery` 与 `Planning` 之间的可选收敛增强动作，不是新的 phase 或 command
 - `writing-plans`：`Planning` 阶段的计划输出，不是独立 command，当前主要由 `brief-project` 承担
 
 ## 默认增强能力
@@ -60,6 +61,8 @@
 - `serena`：代码语义检索、符号定位、引用分析与精确编辑
 - `memory`：项目长期约定、稳定偏好与长任务状态沉淀
 - `context7`：官方文档、版本差异与迁移说明查证
+
+补充说明：`decision-framing` 也属于流程增强思路，但它是 workflow 中的收敛动作，不是新的 command 入口。
 
 它们属于流程增强层，不是新的 command 入口；具体使用边界以 `tooling-context-governance.md` 为准。
 

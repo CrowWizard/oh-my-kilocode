@@ -32,6 +32,7 @@
 - `agent`：角色能力，不替代 command 入口
 - `brainstorming`：新项目语境下的 `Discovery`，不是独立 command
 - `项目分析`：已有项目语境下的 `Discovery`
+- `decision-framing`：`Discovery` 与 `Planning` 之间的可选收敛增强动作，不是新的 phase 或 command
 - `writing-plans`：`Planning` 阶段的计划输出，不是独立 command，当前主要由 `brief-project` 承担
 - `audit`：偏发现、分类与分流
 - `review`：偏深入审查、问题分级与结论输出
@@ -43,6 +44,8 @@
 - `serena`：代码语义检索、符号定位、引用分析与精确修改
 - `memory`：长期约定、稳定偏好与长任务状态沉淀
 - `context7`：官方文档、版本差异与迁移说明查证
+
+补充说明：`decision-framing` 属于 workflow 中的收敛增强动作，不作为独立 command 暴露。
 
 关键摘要：
 
@@ -57,6 +60,7 @@
 - 统一阶段语言为 `Discovery / Planning / Execution`
 - 已有项目中，`Discovery` 通常表现为“项目分析”
 - 新项目中，`Discovery` 通常表现为 `brainstorming`
+- `decision-framing` 可在 `Discovery` 与 `Planning` 之间作为增强节点使用，但不单列为新阶段
 - `Planning` 的常见输出为 `writing-plans`
 - command 负责把阶段串成 workflow，agent 在各自职责范围内遵循同样阶段纪律
 
