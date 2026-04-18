@@ -2,7 +2,7 @@
 
 ## 目标
 
-定义 `kilo/.kilo` 当前最小可用的 release 治理约束，为后续是否引入 release 类 command 提供稳定前提。
+定义当前最小可用的 release 治理约束，为后续是否引入 release 类 command 提供稳定前提。
 
 当前阶段先建立发布收口规则，不立即假设存在完整版本系统。
 

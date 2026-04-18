@@ -32,7 +32,7 @@
 
 ### 其他文档
 
-- `@kilo/docs/kilo-maintainer-guide.md`：维护者如何继续演进 `.kilo/` 的说明
+- `@kilo/docs/kilo-maintainer-guide.md`：维护者如何继续演进的说明
 - `@kilo/docs/agent-vs-subagent-plan.md`：主 agent、逻辑 subagent 与双形态角色的分层计划
 - `@kilo/docs/universal-template-integration-plan.md`：与外部 universal template 的整合计划
 - `@kilo/docs/phase-3-longtail-admission.md`：长尾能力准入与试点结论
